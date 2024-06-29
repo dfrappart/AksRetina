@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: basicdeploy
+    org: retina
+  name: basicdeploy
+  namespace: basics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: basicdeploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: basicdeploy
+        org: retina
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demodeploy
+    org: retina
+  name: demodeploy
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demodeploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demodeploy
+        org: retina
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginxclient
+  name: nginxclient
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxclient
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginxclient
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
